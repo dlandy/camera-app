@@ -58,7 +58,7 @@ cameraTrigger.onclick = function() {
     console.log(cameraOutput.src.src)
     console.log("data:")
     console.log(cameraOutput)
-
+    window.open("https://math.new?eq=".concat(result.latex_normal), '_blank');
     cameraOutput.classList.add("taken");
     // track.stop();
 };
