@@ -31,23 +31,24 @@ cameraTrigger.onclick = function() {
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
     console.log("I'm here")
-    fetch("https://api.mathpix.com/v3/latex", {
-        method: "POST", 
-        headers: {
-            "content-type": "application/json",
-            app_id: dhlandy_gmail_com_e9bd5f_8329a6, 
-            app_key: 7af70617e1af192f3d2261c5eb25fb7470a6ea9159332247c5d0210c0f8c746a
-        },
-        url: "https://api.mathpix.com/v3/latex",
-        body: JSON.stringify({
-            "src": "https://mathpix-ocr-examples.s3.amazonaws.com/limit.jpg",
-            "formats": ["latex_normal"]
-          })
-    })
-    .then(response => {
-        console.log(result)
+    async function fetchText() {
+        let response = await fetch("https://api.mathpix.com/v3/latex", {
+            method: "POST", 
+            headers: {
+                "content-type": "application/json",
+                app_id: dhlandy_gmail_com_e9bd5f_8329a6, 
+                app_key: 7af70617e1af192f3d2261c5eb25fb7470a6ea9159332247c5d0210c0f8c746a
+            },
+            url: "https://api.mathpix.com/v3/latex",
+            body: JSON.stringify({
+                "src": "https://mathpix-ocr-examples.s3.amazonaws.com/limit.jpg",
+                "formats": ["latex_normal"]
+              })
+        });
+        let data = await response.text();
+        console.log(data);
     }
-    )
+    
 
     cameraOutput.classList.add("taken");
     // track.stop();
