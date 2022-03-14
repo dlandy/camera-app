@@ -31,10 +31,15 @@ cameraTrigger.onclick = function() {
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
     console.log("I'm here")
-    const mathPixQueryObj = new MathPixEquationImage("process.env.appID", "process.env.appKey", "process.env.apiRoot");
+    fetch('https://webserver.com/post', {
+        method: "POST", 
+        body: JSON.stringify({
+            "file": cameraOutput.src
 
-    mathPixQueryObj.processFile();
-    mathPixQueryObj.setFileLocal()
+        })
+    })
+    .then(alert('Post created!'))
+    
     cameraOutput.classList.add("taken");
     // track.stop();
 };
