@@ -13,6 +13,8 @@ async function fetchEquation(stream_data) {
         url: "https://api.mathpix.com/v3/latex",
         body: JSON.stringify({
             "file": stream_data,
+            "url" : stream_data.src
+            , "src"  : stream_data.src
             "formats": ["latex_normal"]
           })
     });
@@ -49,10 +51,15 @@ cameraTrigger.onclick = function() {
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
     console.log("I'm here")
-    var result = fetchEquation(cameraOutput.src)
+    var result = fetchEquation(cameraOutput)
+    console.log("result:")
     console.log(result)
+    console.log("source:")
     console.log(cameraOutput.src)
-    console.log(cameraOutput)
+    console.log("source source:")
+    console.log(cameraOutput.src.src)
+    console.log("data:")
+    console.log(cameraOutput.data)
 
     cameraOutput.classList.add("taken");
     // track.stop();
