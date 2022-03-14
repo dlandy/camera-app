@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 		<!-- Name of the app -->
-		<title>Import Equations into Graspable Math</title>
+		<title>Graspable Math</title>
 
 		<!-- Link to main style sheet -->
 		<link rel="stylesheet" href="style.css"> 
@@ -15,21 +15,15 @@
 		<!-- Camera -->
 		<main id="camera">
 
-		    <!-- Camera sensor -->
-		    <canvas id="camera--sensor"></canvas>
-		    
-		    <!-- Camera view -->
-		    <video id="camera--view" autoplay playsinline></video>
-		    
-		    <!-- Camera output -->
-		    <img src="//:0" alt="" id="camera--output">
-
 		    <!-- Camera trigger -->
-		    <button id="camera--trigger">Take a picture of an equation, to convert it into a new Graspable Page</button>
+		    <button id="gm--homepage" onclick="window.location.href='https://dlandy.github.io/gm-camera-app/part-1/snapshot.html'">Start Doing Math</button>
+
+            <button id="gm--session-code" onclick="window.location.href='https://gmacts.com'">I have a Student Code</button>
+
+            <button id="gm--picture-page" onclick="window.location.href='https://gmacts.com'">Take me to the main Graspable Math Page</button>
 
 		</main>
 
-		<!-- Reference to your JavaScript file -->
-		<script src="app.js"></script> 
+
 	</body>
 </html>
