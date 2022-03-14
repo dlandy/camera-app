@@ -12,7 +12,7 @@ async function fetchEquation(stream_data) {
         },
         url: "https://api.mathpix.com/v3/latex",
         body: JSON.stringify({
-            "src": "https://mathpix-ocr-examples.s3.amazonaws.com/limit.jpg",
+            "file": stream_data,
             "formats": ["latex_normal"]
           })
     });
