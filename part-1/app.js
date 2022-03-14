@@ -50,16 +50,19 @@ cameraTrigger.onclick = function() {
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
     console.log("I'm here")
-    var result = await fetchEquation(cameraOutput)
-    .then(result => {console.log("result:")
-    console.log(result)
-    console.log("data:")
-    console.log(result)
-    console.log(result.latex_normal)
-    window.open("https://math.new?eq=".concat(result.latex_normal), '_blank');
+    fetchEquation(cameraOutput)
+    .then(function(result) {
+        console.log("result:")
+        console.log(result)
+        console.log("data:")
+        console.log(result)
+        console.log(result.latex_normal)
+        window.open("https://math.new?eq=".concat(result.latex_normal), '_blank');
+
+        // track.stop();
+    });
     cameraOutput.classList.add("taken");
-    // track.stop();
-})
+
 };
 
 // Start the video stream when the window loads
