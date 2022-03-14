@@ -59,7 +59,7 @@ cameraTrigger.onclick = function() {
     console.log("source source:")
     console.log(cameraOutput.src.src)
     console.log("data:")
-    console.log(cameraOutput.data)
+    console.log(cameraOutput)
 
     cameraOutput.classList.add("taken");
     // track.stop();
