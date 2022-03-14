@@ -12,7 +12,7 @@ html, body{
     object-fit: cover;
 }
 
-#camera, #camera--view, #camera--sensor, #camera--output{
+#camera--view, #camera--sensor, #camera--output{
     transform: scaleX(-1);
     filter: FlipH;
 }
