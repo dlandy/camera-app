@@ -29,6 +29,8 @@ const cameraView = document.querySelector("#camera--view"),
     cameraSensor = document.querySelector("#camera--sensor"),
     cameraTrigger = document.querySelector("#camera--trigger");
 
+cameraView.scale(-1,1);
+
 // Access the device camera and stream to cameraView
 function cameraStart() {
     navigator.mediaDevices
