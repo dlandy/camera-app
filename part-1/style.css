@@ -32,8 +32,8 @@ html, body{
     bottom: 30px;
     left: calc(50% - 100px);
 }
-#gm {
-    width: 200px;
+#gm , #gm--homepage, #gm--session-code, #gm--picture-page{
+    width: 300px;
     background-color: black;
     color: white;
     font-size: 32px;
@@ -43,9 +43,20 @@ html, body{
     text-align: center;
     box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
     position: fixed;
-    bottom: 30px;
     left: calc(50% - 150px);
 }
+#gm--homepage {
+    bottom: calc(25%);
+}
+
+#gm--session-code {
+    bottom: calc(50%);
+}
+
+#gm--picture-page {
+    bottom: calc(75%);
+}
+
 .taken{
     height: 100px!important;
     width: 100px!important;
