@@ -3,8 +3,6 @@ var constraints = { video: { facingMode: "environment" }, audio: false };
 var track = null;
 
 
-const MathPix = require("./MathPix/MathPix");
-const MathPixEquationImage = require("./MathPix/MathPixEquationImage");
 
 
 // Define constants
@@ -33,8 +31,10 @@ cameraTrigger.onclick = function() {
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
     console.log("I'm here")
-    MathPixEquationImage.processFile();
-    MathPixEquationImage.setFileLocal()
+    const mathPixQueryObj = new MathPixEquationImage("process.env.appID", "process.env.appKey", "process.env.apiRoot");
+
+    mathPixQueryObj.processFile();
+    mathPixQueryObj.setFileLocal()
     cameraOutput.classList.add("taken");
     // track.stop();
 };
