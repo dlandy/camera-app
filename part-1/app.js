@@ -31,15 +31,21 @@ cameraTrigger.onclick = function() {
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
     console.log("I'm here")
-    fetch('https://webserver.com/post', {
+    fetch("https://api.mathpix.com/v3/latex", {
         method: "POST", 
+        headers: {
+            "content-type": "application/json",
+            app_id: this.appID,
+            app_key: this.appKey
+        },
+        url: "https://api.mathpix.com/v3/latex",
         body: JSON.stringify({
-            "file": cameraOutput.src
-
-        })
+            "src": "https://mathpix-ocr-examples.s3.amazonaws.com/limit.jpg",
+            "formats": ["latex_normal"]
+          })
     })
     .then(alert('Post created!'))
-    
+
     cameraOutput.classList.add("taken");
     // track.stop();
 };
