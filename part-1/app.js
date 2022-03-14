@@ -35,8 +35,8 @@ cameraTrigger.onclick = function() {
         method: "POST", 
         headers: {
             "content-type": "application/json",
-            app_id: this.appID,
-            app_key: this.appKey
+            app_id: dhlandy_gmail_com_e9bd5f_8329a6, 
+            app_key: 7af70617e1af192f3d2261c5eb25fb7470a6ea9159332247c5d0210c0f8c746a
         },
         url: "https://api.mathpix.com/v3/latex",
         body: JSON.stringify({
@@ -44,7 +44,10 @@ cameraTrigger.onclick = function() {
             "formats": ["latex_normal"]
           })
     })
-    .then(alert('Post created!'))
+    .then(response => {
+        console.log(result)
+    }
+    )
 
     cameraOutput.classList.add("taken");
     // track.stop();
