@@ -18,6 +18,7 @@ async function fetchEquation(stream_data) {
     });
     let data = await response.text();
     console.log(data);
+    console.log(data.latex_normal);
     return data;
 }
 
@@ -57,7 +58,8 @@ cameraTrigger.onclick = function() {
     console.log("source source:")
     console.log(cameraOutput.src.src)
     console.log("data:")
-    console.log(cameraOutput)
+    console.log(result)
+    console.log(result.latex_normal)
     window.open("https://math.new?eq=".concat(result.latex_normal), '_blank');
     cameraOutput.classList.add("taken");
     // track.stop();
