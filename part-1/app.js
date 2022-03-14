@@ -12,8 +12,6 @@ async function fetchEquation(stream_data) {
         },
         url: "https://api.mathpix.com/v3/latex",
         body: JSON.stringify({
-            "file": stream_data,
-            "url" : stream_data.src,
              "src"  : stream_data.src,
             "formats": ["latex_normal"]
           })
