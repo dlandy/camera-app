@@ -2,6 +2,12 @@
 var constraints = { video: { facingMode: "environment" }, audio: false };
 var track = null;
 
+
+require('dotenv').config();
+const MathPix = require("./MathPix/MathPix");
+const MathPixEquationImage = require("./MathPix/MathPixEquationImage");
+
+
 // Define constants
 const cameraView = document.querySelector("#camera--view"),
     cameraOutput = document.querySelector("#camera--output"),
@@ -27,6 +33,9 @@ cameraTrigger.onclick = function() {
     cameraSensor.height = cameraView.videoHeight;
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
+    console.log("I'm here")
+    MathPixEquationImage.processFile();
+    MathPixEquationImage.setFileLocal()
     cameraOutput.classList.add("taken");
     // track.stop();
 };
