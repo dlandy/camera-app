@@ -3,7 +3,6 @@ var constraints = { video: { facingMode: "environment" }, audio: false };
 var track = null;
 
 
-require('dotenv').config();
 const MathPix = require("./MathPix/MathPix");
 const MathPixEquationImage = require("./MathPix/MathPixEquationImage");
 
