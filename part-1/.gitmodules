@@ -1,0 +1,3 @@
+[submodule "part-1/part-1/MathPixJS"]
+	path = part-1/part-1/MathPixJS
+	url = https://github.com/dlandy/MathPixJS.git
