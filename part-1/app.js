@@ -56,8 +56,9 @@ cameraTrigger.onclick = function() {
         console.log(result)
         console.log("data:")
         console.log(result)
-        console.log(result.latex_normal)
-        window.open("https://math.new?eq=".concat(result.latex_normal), '_blank');
+        latex = JSON.parse(result).latex_normal
+        console.log(latex)
+        window.open("https://math.new?eq=".concat(latex), '_blank');
 
         // track.stop();
     });
