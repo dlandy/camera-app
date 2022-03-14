@@ -51,6 +51,8 @@ cameraTrigger.onclick = function() {
     console.log("I'm here")
     var result = fetchEquation(cameraOutput.src)
     console.log(result)
+    console.log(cameraOutput.src)
+    console.log(cameraOutput)
 
     cameraOutput.classList.add("taken");
     // track.stop();
