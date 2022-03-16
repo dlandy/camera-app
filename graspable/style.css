@@ -32,7 +32,7 @@ html, body{
     bottom: 30px;
     left: calc(50% - 100px);
 }
-#gm , #gm--homepage, #gm--session-code, #gm--picture-page{
+#gm , #gm--homepage, #gm--session-code, #gm--picture-page, #gm--photo, #gm--screenshot, #gm--myself{
     width: 300px;
     background-color: black;
     color: white;
@@ -45,17 +45,47 @@ html, body{
     position: fixed;
     left: calc(50% - 150px);
 }
-#gm--homepage {
-    bottom: calc(25%);
+
+#gm--homepage, #gm--myself {
+    bottom: calc(75%);
 }
 
-#gm--session-code {
+#gm--session-code, #gm--screenshot {
     bottom: calc(50%);
 }
 
-#gm--picture-page {
-    bottom: calc(75%);
+#gm--picture-page, #gm--photo {
+    bottom: calc(20%);
 }
+
+#gm--go {
+    left: calc(20%);
+    text-align: left;
+}
+
+#screenshot-text{
+    font-size: 32px;
+}
+
+#screenshot--box{
+    position: fixed;
+    left: calc(50% - 200px);  
+}
+
+#screenshot-go{
+    width: 300px;
+    background-color: black;
+    color: white;
+    font-size: 32px;
+    border-radius: 30px;
+    border: none;
+    padding: 15px 20px;
+    text-align: center;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+    position: fixed;
+    left: calc(50% - 150px);
+}
+
 
 .taken{
     height: 100px!important;
@@ -69,3 +99,4 @@ html, body{
     transform: scaleX(-1);
     -webkit-transform: scaleX(-1);
 }
+

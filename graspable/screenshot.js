@@ -1,0 +1,150 @@
+
+async function fetchEquation(screenshot) {
+    let response = await fetch("https://api.mathpix.com/v3/latex", {
+        method: "POST", 
+        headers: {
+            "content-type": "application/json",
+            app_id: "dhlandy_gmail_com_e9bd5f_8329a6", 
+            app_key: "7af70617e1af192f3d2261c5eb25fb7470a6ea9159332247c5d0210c0f8c746a"
+        },
+        url: "https://api.mathpix.com/v3/latex",
+        body: JSON.stringify({
+             "src"  : screenshot,
+            "formats": ["latex_normal"]
+          })
+    });
+    let data = await response.text();
+    console.log(data);
+    console.log(data.latex_normal);
+    return data;
+}
+//=====================================================================
+//See comment near next big divider line.
+let exportsSelf = {};
+/**
+     * image pasting into canvas
+     * 
+     * @param {string} canvas_id - canvas id
+     * @param {boolean} autoresize - if canvas will be resized
+     * @param {function} callback
+     */
+    exportsSelf.CLIPBOARD_CLASS = function (canvas_id, autoresize, callback) {
+        let _self = this;
+        let canvas = document.getElementById(canvas_id);
+        console.log('CLIPBOARD_CLASS canvas', canvas);
+        let ctx = document.getElementById(canvas_id).getContext("2d");
+        console.log('CLIPBOARD_CLASS ctx', ctx);
+
+        //handlers
+        document.addEventListener('paste', function (e) {
+            console.log('paste');
+            _self.paste_auto(e);
+        }, false);
+
+        /* events fired on the drop targets */
+        document.addEventListener("dragover", function (e) {
+            // prevent default to allow drop
+            e.preventDefault();
+        }, false);
+        document.addEventListener('drop', function (e) {
+            // prevent default action (open as link for some elements)
+            // add event handler to canvas if desired instead of document
+            //debugger;
+            e.preventDefault();
+            let items = e.dataTransfer.items;
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].type.indexOf("image") !== -1) {
+                    //document.getElementById("instructions").style.visibility = "hidden";
+                    //image
+                    let blob = items[i].getAsFile();
+                    let URLObj = window.URL || window.webkitURL;
+                    let source = URLObj.createObjectURL(blob);
+                    _self.paste_createImage(source);
+                }
+            }
+        });
+
+        //on paste
+        this.paste_auto = function (e) {
+            if (e.clipboardData) {
+                let items = e.clipboardData.items;
+                if (!items)
+                    return;
+
+                //access data directly
+                for (let i = 0; i < items.length; i++) {
+                    if (items[i].type.indexOf("image") !== -1) {
+                        //image
+                        let blob = items[i].getAsFile();
+                        let URLObj = window.URL || window.webkitURL;
+                        let source = URLObj.createObjectURL(blob);
+                        this.paste_createImage(source);
+                    }
+                }
+                e.preventDefault();
+
+            }
+        };
+        //draw pasted image to canvas
+        this.paste_createImage = function (source) {
+            console.log('this.paste_createImage', source);
+            //debugger;
+            let pastedImage = new Image();
+            pastedImage.onload = function () {
+                if (autoresize == true) {
+                    //resize
+                    canvas.width = pastedImage.width;
+                    canvas.height = pastedImage.height;
+                } else {
+                    //clear canvas
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+                ctx.drawImage(pastedImage, 0, 0);
+                const imageAsString = getImgAsString(canvas_id);
+                callback(imageAsString);
+            };
+            pastedImage.src = source;
+        };
+    };
+
+function isCanvasBlank(canvas) { // detect blank canvas: https://stackoverflow.com/a/17386803/
+  console.log('isCanvasBlank', canvas);
+  let blank = document.createElement('canvas');
+  blank.width = canvas.width;
+  blank.height = canvas.height;
+  return canvas.toDataURL() === blank.toDataURL();
+}
+
+function getImgAsString(canvasElementId) {
+        console.log('getImgAsString', canvasElementId);
+        //debugger;                
+        let canvasEl = document.getElementById(canvasElementId);
+        if (isCanvasBlank(canvasEl)) {
+            return null;
+        } else {
+            let imageData = canvasEl.toDataURL("image/png");
+            console.log('imageData', imageData);
+      //      imageData = imageData.replace('data:image/png;base64,', '');
+            return imageData;
+        }
+    }
+
+//=====================================================================
+//Everything above that line could be put into a webpack module. Then the following could be called on a page after the document has loaded:
+
+const canvasElementId = 'my_canvas';
+let CLIPBOARD = new exportsSelf.CLIPBOARD_CLASS(canvasElementId, true, function() {
+  console.log('paste_auto finished');
+  document.getElementById('screenshot-go').style.display = 'block';
+});
+
+document.getElementById('screenshot-go').addEventListener('click', function() {
+  const screenshot = getImgAsString(canvasElementId);
+  fetchEquation(screenshot)
+  .then(function(result) {
+    latex = JSON.parse(result).latex_normal
+    window.open("https://math.new?eq=".concat(latex), '_blank');
+
+    // track.stop();
+});
+});

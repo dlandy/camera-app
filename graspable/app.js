@@ -50,15 +50,9 @@ cameraTrigger.onclick = function() {
     cameraSensor.height = cameraView.videoHeight;
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
-    console.log("I'm here")
     fetchEquation(cameraOutput)
     .then(function(result) {
-        console.log("result:")
-        console.log(result)
-        console.log("data:")
-        console.log(result)
         latex = JSON.parse(result).latex_normal
-        console.log(latex)
         window.open("https://math.new?eq=".concat(latex), '_blank');
 
         // track.stop();

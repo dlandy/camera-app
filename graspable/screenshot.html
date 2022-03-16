@@ -1,0 +1,33 @@
+<html lang=”en”>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Name of the app -->
+		<title>Import Equations into Graspable Math</title>
+
+		<!-- Link to main style sheet -->
+		<link rel="stylesheet" href="style.css"> 
+	</head>
+	<body>
+        <div id="screenshot-text">
+            <ol width = 400>
+        <li> Copy image data into clipboard (copy an image, or use cmd-ctrl-shift-4 on a mac to take a screenshot).
+         Make sure that one clear equation appears in frame, by itself. </li>
+        <li> Press Ctrl+V into box below: </li>
+        <li> Press the "Send to GM" button </li>
+    </ol>
+    </div> 
+        <div id="screenshot-box">
+          <canvas style="border:1px solid grey;" id="my_canvas" width="400" height="150"></canvas>
+          </div>
+          <button id='screenshot-go' style="display: none;">Send to GM</button>
+        
+        
+        
+
+		<!-- Reference to your JavaScript file -->
+		<script src="screenshot.js"></script> 
+	</body>
+</html>

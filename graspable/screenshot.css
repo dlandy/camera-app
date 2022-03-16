@@ -1,0 +1,13 @@
+#v,
+#i {
+  width: 400;
+  height: 300;
+}
+
+#v {
+  border: 1px solid blue;
+}
+
+#i {
+  border: 1px solid green;
+}
